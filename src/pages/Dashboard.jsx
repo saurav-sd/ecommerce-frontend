@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts, getCategory, getOrder } from "../auth/api";
+import { getAllProducts, getAllCategories, getOrder } from "../auth/api";
 import ChartTabs from "../components/orders/ChartTabs";
 
 export default function Dashboard() {
@@ -12,7 +12,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       const res1 = await getAllProducts();
-      const res2 = await getCategory();
+      const res2 = await getAllCategories();
       const res3 = await getOrder();
       setStats({
         products: res1.data.length,

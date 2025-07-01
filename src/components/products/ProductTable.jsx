@@ -3,12 +3,17 @@ import { useAuth } from "../../auth/AuthProvider";
 import {
   getAllProducts,
   deleteProduct,
+  createProduct,
+  updateProduct
 } from "../../auth/api";
 import ProductTableRow from "./ProductTableRow";
+import ProductFormModal from "./ProductFormModal";
 
 const ProductTable = () => {
   const { accessToken } = useAuth();
   const [products, setProducts] = useState([]);
+   const [modalOpen, setModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   const fetchProducts = async () => {
     try {
@@ -30,8 +35,8 @@ const ProductTable = () => {
   };
 
   const handleEdit = (product) => {
-    console.log("Edit Product", product);
-    // Open modal or redirect
+    setEditingProduct(product);
+    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -40,11 +45,36 @@ const ProductTable = () => {
     }
   }, [accessToken]);
 
+    const handleAdd = () => {
+    setEditingProduct(null);
+    setModalOpen(true);
+  };
+
+  const handleSave = async (form) => {
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct.id, form);
+      } else {
+        await createProduct(form);
+      }
+      fetchProducts();
+      setModalOpen(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (accessToken) fetchProducts();
+  }, [accessToken]);
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Product Inventory</h2>
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+        <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors"
+          onClick={handleAdd}
+        >
           Add Product
         </button>
       </div>
@@ -89,6 +119,12 @@ const ProductTable = () => {
           </table>
         </div>
       </div>
+      <ProductFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onSave={handleSave}
+        product={editingProduct}
+      />
     </div>
   );
 };

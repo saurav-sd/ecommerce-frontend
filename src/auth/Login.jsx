@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from './AuthProvider'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,6 +6,7 @@ const Login = () => {
 
     const { login } = useAuth()
     const navigate = useNavigate()
+    const { user } = useAuth()
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,7 +25,12 @@ const Login = () => {
     }
   }
   
-  
+  useEffect(() => {
+  if (user) {
+    navigate("/");
+  }
+}, [user]);
+
 
 
   return (
@@ -65,6 +71,15 @@ const Login = () => {
         >
           Login
         </button>
+        <p className="text-sm mt-4 text-gray-600">
+        Don't have an account?{" "}
+        <span
+          className="text-blue-600 hover:underline cursor-pointer"
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </span>
+      </p>
       </form>
     </div>
   )

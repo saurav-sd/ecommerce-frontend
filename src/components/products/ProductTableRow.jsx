@@ -1,6 +1,9 @@
+import { useCart } from "../../hooks/useCart";
+
 const BASE_IMAGE_URL = "http://127.0.0.1:8000";
 
 const ProductTableRow = ({ product, onEdit, onDelete }) => {
+  const { addItem } = useCart();
   const imageUrl = product.image.startsWith("http")
     ? product.image
     : `${BASE_IMAGE_URL}${product.image}`;
@@ -28,14 +31,20 @@ const ProductTableRow = ({ product, onEdit, onDelete }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
         <button
+          onClick={() => addItem(product.id, 1)}
+          className="text-indigo-600 hover:text-indigo-900 mr-4 cursor-pointer"
+        >
+          Add to Cart
+        </button>
+        <button
           onClick={() => onEdit(product)}
-          className="text-indigo-600 hover:text-indigo-900 mr-4"
+          className="text-indigo-600 hover:text-indigo-900 mr-4 cursor-pointer"
         >
           Edit
         </button>
         <button
           onClick={() => onDelete(product.id)}
-          className="text-red-600 hover:text-red-900"
+          className="text-red-600 hover:text-red-900 cursor-pointer"
         >
           Delete
         </button>

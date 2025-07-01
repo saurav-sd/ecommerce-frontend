@@ -33,6 +33,7 @@ export const logoutUser = () => {
 
 // Order API
 export const getOrder = () => API.get("/orders/");
+export const getOrderById = (id) => API.get(`/orders/${id}`);
 
 // Product APIs
 export const getAllProducts = () => API.get("/products/");
@@ -45,6 +46,21 @@ export const uploadImage = (formData) =>
     headers: { "Content-Type": "multipart/form-data" },
   });
 
-
 // Category APIs
-export const getCategory = () => API.get("/categories/");
+export const getAllCategories = () => API.get("/categories/");
+export const createCategory = (data) => API.post("/categories/", data);
+export const updateCategory = (id, data) => API.put(`/categories/${id}`, data);
+export const deleteCategory = (id) => API.delete(`/categories/${id}`);
+
+// --- Cart APIs ---
+export const getCartItems = () => API.get("/cart/");
+export const addToCart = (item) => API.post("/cart/", item);
+export const updateCartItem = (cartId, item) => API.put(`/cart/${cartId}`, item);
+export const removeCartItem = (cartId) => API.delete(`/cart/${cartId}`);
+export const clearCart = () => API.delete("/cart/");
+
+// Checkout API
+export const checkoutOrder = (orderData) => {
+  return API.post("/checkout/", orderData);
+}
+
