@@ -13,6 +13,7 @@ import OrderDetails from './components/orders/OrderDetails'
 import OrdersPage from './components/orders/OrdersPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import Register from './auth/Register'
+import Analytics from './pages/Analytics'
 
 function App() {
 
@@ -42,7 +43,8 @@ function App() {
             <Layout />
           </ProtectedRoute>
         }>
-        <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
+          <Route path="/analytics" element={<Analytics />} />
         <Route path="/products" element={<Products />} />
         <Route path="/categories" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />

@@ -11,8 +11,6 @@ export default function ProductFormModal({ isOpen, onClose, onSave, product }) {
     category_id: "",
   });
 
-  console.log("form : ", form)
-
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {

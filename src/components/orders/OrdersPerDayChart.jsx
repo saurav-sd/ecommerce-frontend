@@ -7,9 +7,6 @@ const OrdersPerDayChart = () => {
   const { accessToken } = useAuth();
   const [chartData, setChartData] = useState([]);
 
-  console.log("chartData : ", chartData)
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,7 +52,6 @@ const OrdersPerDayChart = () => {
     </div>
   </div>
 )
-
 }
 
 export default OrdersPerDayChart

@@ -64,3 +64,8 @@ export const checkoutOrder = (orderData) => {
   return API.post("/checkout/", orderData);
 }
 
+// Newsletter API
+export const subscribeToNewsletter = (email) => {
+  return API.post("/newsletter/subscribe", { email });
+};
+
