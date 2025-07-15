@@ -4,7 +4,7 @@ import { getAllProducts, checkoutOrder } from "../../auth/api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const BASE_IMAGE_URL = "http://127.0.0.1:8000";
+const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
 
 export default function CheckoutPage() {
     const navigate = useNavigate();
