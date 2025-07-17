@@ -24,6 +24,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
+            <img src="./public/image.png" alt="Logo" className="h-8 mr-2" />
             <h1 className="text-2xl font-bold text-gray-900">
               <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">ShopHub</Link>
             </h1>
