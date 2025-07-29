@@ -1,6 +1,6 @@
 import { useCart } from "../../hooks/useCart";
 
-const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
+const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com/static/images/";
 
 const ProductTableRow = ({ product, onEdit, onDelete }) => {
   const { addItem } = useCart();

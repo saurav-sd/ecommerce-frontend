@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOrderById, getAllProducts } from "../../auth/api";
 
-const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
+const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com/static/images/";
 
 export default function OrderDetails() {
   const { orderId } = useParams();
