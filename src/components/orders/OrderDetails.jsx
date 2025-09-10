@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOrderById, getAllProducts } from "../../auth/api";
 
-const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
-
 export default function OrderDetails() {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
@@ -38,9 +36,7 @@ export default function OrderDetails() {
       <div className="space-y-4">
         {order.items.map((item) => {
           const product = getProductDetails(item.product_id);
-          const imageUrl = product?.image?.startsWith("http")
-            ? product.image
-            : `${BASE_IMAGE_URL}${product?.image}`;
+          const imageUrl = product?.image;
 
           return (
             <div

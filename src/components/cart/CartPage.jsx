@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "../../auth/api";
 import { useNavigate } from "react-router-dom";
 
-const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
+// const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
 
 export default function CartPage() {
   const { cart, updateItem, removeItem, clear } = useCart();
@@ -35,9 +35,7 @@ export default function CartPage() {
         <div className="space-y-6">
           {cart.map((item) => {
             const product = getProductDetails(item.product_id);
-            const imageUrl = product.image.startsWith("http")
-              ? product.image
-              : `${BASE_IMAGE_URL}${product.image}`;
+            const imageUrl = product?.image;
 
             return (
               <div

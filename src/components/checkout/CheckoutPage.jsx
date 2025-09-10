@@ -4,7 +4,7 @@ import { getAllProducts, checkoutOrder } from "../../auth/api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
+// const BASE_IMAGE_URL = "https://ecommerce-dashboard-backend-1.onrender.com";
 
 export default function CheckoutPage() {
     const navigate = useNavigate();
@@ -106,9 +106,7 @@ export default function CheckoutPage() {
           <h3 className="text-xl font-semibold">Cart Summary</h3>
           {cart.map((item) => {
               const product = getProductDetails(item.product_id);
-              const imageUrl = product.image.startsWith("http")
-              ? product.image
-              : `${BASE_IMAGE_URL}${product.image}`;
+            const imageUrl = product?.image;
             return (
               <div
                 key={item.id}
